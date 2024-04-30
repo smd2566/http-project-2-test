@@ -48,19 +48,19 @@ nav:nth-child(1) {
 }
 
 .swordForm {
-    border: 2px solid #338acc;
+    border: 2px solid #11a101;
     height: 35px;
-    width: 1000px;
+    width: max-content;
     margin-top:0px;
     padding-top:10px;
-    background-color: #55acee;
+    background-color: #017f11;
     border-bottom-right-radius: 4px;
     border-top-right-radius: 4px;
 }
 
 .swordForm label {
     display: inline-block;
-    width: 75px;
+    width: 110px;
     margin-left: 10px;
     font-size: 1.2em;
     color: white;
@@ -253,6 +253,15 @@ h3.swordSharpness {
 }
 
 h3.swordLevel {
+    
+    text-align: left;
+    width: 100px;
+    font-weight: bold;
+    padding-right: 40px;
+    font-size: 1.5em;
+}
+
+h3.swordEnchantment {
     
     text-align: left;
     width: 100px;

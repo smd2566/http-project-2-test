@@ -10,13 +10,14 @@ const handleSword = (e, onSwordAdded) => {
     const name = e.target.querySelector('#swordName').value;
     const sharpness = e.target.querySelector('#swordSharpness').value;
     const level = e.target.querySelector('#swordLevel').value;
+    const enchantment = e.target.querySelector('#swordEnchantment').value;
 
-    if (!name || !sharpness || !level) {
+    if (!name || !sharpness || !level || !enchantment) {
         helper.handleError('All fields are required');
         return false;
     }
 
-    helper.sendPost(e.target.action, {name, sharpness, level}, onSwordAdded);
+    helper.sendPost(e.target.action, {name, sharpness, level, enchantment}, onSwordAdded);
     return false;
 }
 
@@ -35,7 +36,10 @@ const SwordForm = (props) => {
             <input id="swordSharpness" type="number" min="0" name="sharpness" />
             <label htmlFor="level">Level: </label>
             <input id="swordLevel" type="number" min="0" name="level" />
+            <label htmlFor="enchantment">Enchantment: </label>
+            <input id="swordEnchantment" type="text" name="enchantment" placeHolder="Sword Enchantment" />
             <input className="makeSwordSubmit" type="submit" value="Make Sword" />
+            
         </form>
     );
 };
@@ -67,6 +71,7 @@ const SwordList = (props) => {
                 <h3 className="swordName">Name: {sword.name}</h3>
                 <h3 className="swordSharpness">Sharpness: {sword.sharpness}</h3>
                 <h3 className="swordLevel">Level: {sword.level}</h3>
+                <h3 className="swordEnchantment">Enchantment: {sword.enchantment}</h3>
             </div>
         );
     });

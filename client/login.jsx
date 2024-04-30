@@ -86,7 +86,7 @@ const AboutWindow = (props) => {
             name="aboutForm"
             className="mainForm"
         >
-            <h2>This tool allows you to create a sword to your liking! Give it a name, sharpness and value!</h2>
+            <h2>This tool allows you to create a sword to your liking! Give it a name, sharpness and level!</h2>
         </form>
     );
 };
