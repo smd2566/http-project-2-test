@@ -19,7 +19,8 @@ const makeSword = async (req, res) => {
   try {
     const newSword = new Sword(swordData);
     await newSword.save();
-    return res.status(201).json({ name: newSword.name, sharpness: newSword.sharpness, level: newSword.level });
+    return res.status(201).json({ name: newSword.name, sharpness: newSword.sharpness,
+       level: newSword.level });
   } catch (err) {
     console.log(err);
     if (err.code === 11000) {
