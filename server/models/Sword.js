@@ -10,7 +10,7 @@ const SwordSchema = new mongoose.Schema({
     trim: true,
     set: setName,
   },
-  age: {
+  sharpness: {
     type: Number,
     min: 0,
     required: true,
@@ -33,7 +33,7 @@ const SwordSchema = new mongoose.Schema({
 
 SwordSchema.statics.toAPI = (doc) => ({
   name: doc.name,
-  age: doc.age,
+  sharpness: doc.sharpness,
   level: doc.level,
 });
 

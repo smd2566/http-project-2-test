@@ -8,15 +8,15 @@ const handleSword = (e, onSwordAdded) => {
     helper.hideError();
 
     const name = e.target.querySelector('#swordName').value;
-    const age = e.target.querySelector('#swordAge').value;
+    const sharpness = e.target.querySelector('#swordSharpness').value;
     const level = e.target.querySelector('#swordLevel').value;
 
-    if (!name || !age || !level) {
+    if (!name || !sharpness || !level) {
         helper.handleError('All fields are required');
         return false;
     }
 
-    helper.sendPost(e.target.action, {name, age, level}, onSwordAdded);
+    helper.sendPost(e.target.action, {name, sharpness, level}, onSwordAdded);
     return false;
 }
 
@@ -31,8 +31,8 @@ const SwordForm = (props) => {
         >
             <label htmlFor="name">Name: </label>
             <input id="swordName" type="text" name="name" placeHolder="Sword Name" />
-            <label htmlFor="age">Age: </label>
-            <input id="swordAge" type="number" min="0" name="age" />
+            <label htmlFor="sharpness">Sharpness: </label>
+            <input id="swordSharpness" type="number" min="0" name="sharpness" />
             <label htmlFor="level">Level: </label>
             <input id="swordLevel" type="number" min="0" name="level" />
             <input className="makeSwordSubmit" type="submit" value="Make Sword" />
@@ -65,7 +65,7 @@ const SwordList = (props) => {
             <div key={sword.id} className="sword">
                 <img src="/assets/img/swordface.jpeg" alt="sword face" className="swordFace" />
                 <h3 className="swordName">Name: {sword.name}</h3>
-                <h3 className="swordAge">Age: {sword.age}</h3>
+                <h3 className="swordSharpness">Sharpness: {sword.sharpness}</h3>
                 <h3 className="swordLevel">Level: {sword.level}</h3>
             </div>
         );

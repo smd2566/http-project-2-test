@@ -5,13 +5,13 @@ const { Sword } = models;
 const makerPage = async (req, res) => res.render('app');
 
 const makeSword = async (req, res) => {
-  if (!req.body.name || !req.body.age || !req.body.level) {
-    return res.status(400).json({ error: 'Name, age and level are all required!' });
+  if (!req.body.name || !req.body.sharpness || !req.body.level) {
+    return res.status(400).json({ error: 'Name, sharpness and level are all required!' });
   }
 
   const swordData = {
     name: req.body.name,
-    age: req.body.age,
+    sharpness: req.body.sharpness,
     level: req.body.level,
     owner: req.session.account._id,
   };
@@ -19,7 +19,7 @@ const makeSword = async (req, res) => {
   try {
     const newSword = new Sword(swordData);
     await newSword.save();
-    return res.status(201).json({ name: newSword.name, age: newSword.age, level: newSword.level });
+    return res.status(201).json({ name: newSword.name, sharpness: newSword.sharpness, level: newSword.level });
   } catch (err) {
     console.log(err);
     if (err.code === 11000) {
@@ -32,7 +32,7 @@ const makeSword = async (req, res) => {
 const getSwords = async (req, res) => {
   try {
     const query = { owner: req.session.account._id };
-    const docs = await Sword.find(query).select('name age level').lean().exec();
+    const docs = await Sword.find(query).select('name sharpness level').lean().exec();
 
     return res.json({ swords: docs });
   } catch (err) {
