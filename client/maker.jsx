@@ -30,13 +30,13 @@ const SwordForm = (props) => {
             method="POST"
             className="swordForm"
         >
-            <label htmlFor="name">Name: </label>
+            <label id = "swordNameLabel" htmlFor="name">Name: </label>
             <input id="swordName" type="text" name="name" placeHolder="Sword Name" />
-            <label htmlFor="sharpness">Sharpness: </label>
+            <label id = "swordSharpnessLabel" htmlFor="sharpness">Sharpness: </label>
             <input id="swordSharpness" type="number" min="0" name="sharpness" />
-            <label htmlFor="level">Level: </label>
+            <label id = "swordLevelLabel" htmlFor="level">Level: </label>
             <input id="swordLevel" type="number" min="0" name="level" />
-            <label htmlFor="enchantment">Enchantment: </label>
+            <label id = "swordEnchantmentLabel" htmlFor="enchantment">Enchantment: </label>
             <input id="swordEnchantment" type="text" name="enchantment" placeHolder="Sword Enchantment" />
             <input className="makeSwordSubmit" type="submit" value="Make Sword" />
             
