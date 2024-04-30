@@ -86,8 +86,7 @@ const AboutWindow = (props) => {
             name="aboutForm"
             className="mainForm"
         >
-            <h2>A domo is a monster that you can create! Give it a name, an age and a level. Be sure to
-                create an account before doing so!</h2>
+            <h2>This tool allows you to create a sword to your liking! Give it a name, sharpness and value!</h2>
         </form>
     );
 };

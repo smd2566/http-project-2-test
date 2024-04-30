@@ -3,91 +3,91 @@ const React = require('react');
 const { useState, useEffect } = React;
 const { createRoot } = require('react-dom/client');
 
-const handleDomo = (e, onDomoAdded) => {
+const handleSword = (e, onSwordAdded) => {
     e.preventDefault();
     helper.hideError();
 
-    const name = e.target.querySelector('#domoName').value;
-    const age = e.target.querySelector('#domoAge').value;
-    const level = e.target.querySelector('#domoLevel').value;
+    const name = e.target.querySelector('#swordName').value;
+    const age = e.target.querySelector('#swordAge').value;
+    const level = e.target.querySelector('#swordLevel').value;
 
     if (!name || !age || !level) {
         helper.handleError('All fields are required');
         return false;
     }
 
-    helper.sendPost(e.target.action, {name, age, level}, onDomoAdded);
+    helper.sendPost(e.target.action, {name, age, level}, onSwordAdded);
     return false;
 }
 
-const DomoForm = (props) => {
+const SwordForm = (props) => {
     return(
-        <form id="domoForm"
-            onSubmit={(e) => handleDomo(e, props.triggerReload)}
-            name="domoForm"
+        <form id="swordForm"
+            onSubmit={(e) => handleSword(e, props.triggerReload)}
+            name="swordForm"
             action="/maker"
             method="POST"
-            className="domoForm"
+            className="swordForm"
         >
             <label htmlFor="name">Name: </label>
-            <input id="domoName" type="text" name="name" placeHolder="Domo Name" />
+            <input id="swordName" type="text" name="name" placeHolder="Sword Name" />
             <label htmlFor="age">Age: </label>
-            <input id="domoAge" type="number" min="0" name="age" />
+            <input id="swordAge" type="number" min="0" name="age" />
             <label htmlFor="level">Level: </label>
-            <input id="domoLevel" type="number" min="0" name="level" />
-            <input className="makeDomoSubmit" type="submit" value="Make Domo" />
+            <input id="swordLevel" type="number" min="0" name="level" />
+            <input className="makeSwordSubmit" type="submit" value="Make Sword" />
         </form>
     );
 };
 
-const DomoList = (props) => {
-    const [domos, setDomos] = useState(props.domos);
+const SwordList = (props) => {
+    const [swords, setSwords] = useState(props.swords);
 
     useEffect(() => {
-        const loadDomosFromServer = async () => {
-            const response = await fetch('/getDomos');
+        const loadSwordsFromServer = async () => {
+            const response = await fetch('/getSwords');
             const data = await response.json();
-            setDomos(data.domos);
+            setSwords(data.swords);
         };
-        loadDomosFromServer();
-    }, [props.reloadDomos]);
+        loadSwordsFromServer();
+    }, [props.reloadSwords]);
 
-    if (domos.length === 0) {
+    if (swords.length === 0) {
         return (
-            <div className="domoList">
-                <h3 className="emptyDomo">No Domos Yet!</h3>
+            <div className="swordList">
+                <h3 className="emptySword">No Swords Yet!</h3>
             </div>
         );
     }
 
-    const domoNodes = domos.map(domo => {
+    const swordNodes = swords.map(sword => {
         return (
-            <div key={domo.id} className="domo">
-                <img src="/assets/img/domoface.jpeg" alt="domo face" className="domoFace" />
-                <h3 className="domoName">Name: {domo.name}</h3>
-                <h3 className="domoAge">Age: {domo.age}</h3>
-                <h3 className="domoLevel">Level: {domo.level}</h3>
+            <div key={sword.id} className="sword">
+                <img src="/assets/img/swordface.jpeg" alt="sword face" className="swordFace" />
+                <h3 className="swordName">Name: {sword.name}</h3>
+                <h3 className="swordAge">Age: {sword.age}</h3>
+                <h3 className="swordLevel">Level: {sword.level}</h3>
             </div>
         );
     });
 
     return (
-        <div className="domoList">
-            {domoNodes}
+        <div className="swordList">
+            {swordNodes}
         </div>
     );
 };
 
 const App = () => {
-    const [reloadDomos, setReloadDomos] = useState(false);
+    const [reloadSwords, setReloadSwords] = useState(false);
 
     return (
         <div>
-            <div id="makeDomo">
-                <DomoForm triggerReload={() => setReloadDomos(!reloadDomos)} />
+            <div id="makeSword">
+                <SwordForm triggerReload={() => setReloadSwords(!reloadSwords)} />
             </div>
-            <div id="domos">
-                <DomoList domos={[]} reloadDomos={reloadDomos} />
+            <div id="swords">
+                <SwordList swords={[]} reloadSwords={reloadSwords} />
             </div>
         </div>
     );
